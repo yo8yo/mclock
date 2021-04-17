@@ -20,7 +20,7 @@ class CheckInRepository extends ServiceEntityRepository
         parent::__construct($registry, CheckIn::class);
     }
 
-    public function getTotalUser($site)
+    public function getTotalUsers($site)
     {
         $q = $this->createQueryBuilder('c');
         return $q->select($q->expr()->countDistinct('c.user'))

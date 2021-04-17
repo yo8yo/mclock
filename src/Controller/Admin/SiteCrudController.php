@@ -31,8 +31,8 @@ class SiteCrudController extends AbstractCrudController
     {
         if (Crud::PAGE_DETAIL == $responseParameters->get('pageName')) {
             $siteId = $responseParameters->get('entity')->getPrimaryKeyValue();
-            $responseParameters->set('totalUser', $this->checkInRepository->getTotalUser($siteId));
-            $responseParameters->set('totalHour', $this->checkInRepository->getTotalHours($siteId));
+            $responseParameters->set('totalUsers', $this->checkInRepository->getTotalUsers($siteId));
+            $responseParameters->set('totalHours', $this->checkInRepository->getTotalHours($siteId));
         }
 
         return $responseParameters;
