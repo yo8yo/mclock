@@ -73,4 +73,14 @@ class User
 
         return $this;
     }
+
+    public function getName()
+    {
+        return $this->firstname . ' ' . $this->lastname;
+    }
+
+    public function __toString()
+    {
+        return $this->getRegistrationNumber() . ' - ' . $this->getName();
+    }
 }

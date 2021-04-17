@@ -56,9 +56,9 @@ class CheckIn
         return $this;
     }
 
-    public function getDuration(): ?float
+    public function getDuration(): ?string
     {
-        return $this->duration;
+        return (string) $this->duration;
     }
 
     public function setDuration(float $duration): self
