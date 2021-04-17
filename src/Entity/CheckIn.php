@@ -7,6 +7,7 @@ use Doctrine\ORM\Mapping as ORM;
 
 /**
  * @ORM\Entity(repositoryClass=CheckInRepository::class)
+ * @ORM\HasLifecycleCallbacks()
  */
 class CheckIn
 {
@@ -90,5 +91,13 @@ class CheckIn
         $this->site = $site;
 
         return $this;
+    }
+
+    /**
+     * @ORM\PrePersist
+     */
+    public function setCreatedAtValue()
+    {
+        $this->createdAt = new \DateTime();
     }
 }

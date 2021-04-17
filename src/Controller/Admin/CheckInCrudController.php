@@ -3,6 +3,7 @@
 namespace App\Controller\Admin;
 
 use App\Entity\CheckIn;
+use EasyCorp\Bundle\EasyAdminBundle\Config\Crud;
 use EasyCorp\Bundle\EasyAdminBundle\Controller\AbstractCrudController;
 use EasyCorp\Bundle\EasyAdminBundle\Field\AssociationField;
 use EasyCorp\Bundle\EasyAdminBundle\Field\DateTimeField;
@@ -18,12 +19,17 @@ class CheckInCrudController extends AbstractCrudController
 
     public function configureFields(string $pageName): iterable
     {
-        return [
-            DateTimeField::new('createdAt'),
+        $fields = [
             TextField::new('duration'),
             AssociationField::new('user'),
             AssociationField::new('site'),
         ];
+
+        if ($pageName == Crud::PAGE_INDEX || $pageName == Crud::PAGE_DETAIL) {
+            $fields[] = DateTimeField::new('createdAt');
+        }
+
+        return $fields;
     }
 
 }
