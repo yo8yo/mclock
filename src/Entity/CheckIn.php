@@ -3,6 +3,7 @@
 namespace App\Entity;
 
 use App\Repository\CheckInRepository;
+use App\Validator\CheckInOnce;
 use Doctrine\ORM\Mapping as ORM;
 
 /**
@@ -31,6 +32,7 @@ class CheckIn
     /**
      * @ORM\ManyToOne(targetEntity=User::class)
      * @ORM\JoinColumn(nullable=false)
+     * @CheckInOnce()
      */
     private $user;
 

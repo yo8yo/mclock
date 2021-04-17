@@ -3,6 +3,7 @@
 namespace App\Repository;
 
 use App\Entity\CheckIn;
+use App\Entity\User;
 use Doctrine\Bundle\DoctrineBundle\Repository\ServiceEntityRepository;
 use Doctrine\Common\Collections\Criteria;
 use Doctrine\Persistence\ManagerRegistry;
@@ -38,6 +39,17 @@ class CheckInRepository extends ServiceEntityRepository
             ->setParameter('site', $site)
             ->getQuery()
             ->getSingleScalarResult();
+    }
+
+    public function findOneByUserAndDate(User $user, \DateTime $today)
+    {
+        return $this->createQueryBuilder('c')
+            ->andWhere('c.createdAt >= :today')
+            ->andWhere('c.user = :user')
+            ->setParameter('today', $today)
+            ->setParameter('user', $user)
+            ->getQuery()
+            ->getOneOrNullResult();
     }
 
     // /**
