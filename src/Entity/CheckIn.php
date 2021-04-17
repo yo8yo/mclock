@@ -4,11 +4,14 @@ namespace App\Entity;
 
 use App\Repository\CheckInRepository;
 use App\Validator\CheckInOnce;
+use App\Validator\WeeklyHour;
 use Doctrine\ORM\Mapping as ORM;
+use Symfony\Bridge\Doctrine\Validator\Constraints\UniqueEntity;
 
 /**
  * @ORM\Entity(repositoryClass=CheckInRepository::class)
  * @ORM\HasLifecycleCallbacks()
+ * @WeeklyHour(max="35")
  */
 class CheckIn
 {
