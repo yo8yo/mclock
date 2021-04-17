@@ -34,13 +34,15 @@ class WeeklyHourValidator extends ConstraintValidator
 
         $monday = date("Y-m-d", strtotime('monday this week'));
         $countHours = $this->checkInRepository->countWeeklyHour($entity->getUser(), $monday);
-        $countHours += $entity->getDuration();
+        $totalHours = $countHours + $entity->getDuration();
 
-        if ($constraint->max > $countHours) {
+        if ($constraint->max > $totalHours) {
             return;
         }
 
         $this->context->buildViolation($constraint->message)
+            ->setParameter('value', $constraint->max)
+            ->setParameter('duration', $constraint->max - $countHours)
             ->addViolation();
     }
 }
