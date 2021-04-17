@@ -30,6 +30,16 @@ class CheckInRepository extends ServiceEntityRepository
             ->getSingleScalarResult();
     }
 
+    public function getTotalHours($site)
+    {
+        return $this->createQueryBuilder('c')
+            ->select('SUM(c.duration)')
+            ->where('c.site = :site')
+            ->setParameter('site', $site)
+            ->getQuery()
+            ->getSingleScalarResult();
+    }
+
     // /**
     //  * @return CheckIn[] Returns an array of CheckIn objects
     //  */
