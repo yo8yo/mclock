@@ -4,6 +4,7 @@ namespace App\Repository;
 
 use App\Entity\CheckIn;
 use Doctrine\Bundle\DoctrineBundle\Repository\ServiceEntityRepository;
+use Doctrine\Common\Collections\Criteria;
 use Doctrine\Persistence\ManagerRegistry;
 
 /**
@@ -17,6 +18,16 @@ class CheckInRepository extends ServiceEntityRepository
     public function __construct(ManagerRegistry $registry)
     {
         parent::__construct($registry, CheckIn::class);
+    }
+
+    public function getTotalUser($site)
+    {
+        $q = $this->createQueryBuilder('c');
+        return $q->select($q->expr()->countDistinct('c.user'))
+            ->where('c.site = :site')
+            ->setParameter('site', $site)
+            ->getQuery()
+            ->getSingleScalarResult();
     }
 
     // /**
