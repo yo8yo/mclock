@@ -1,0 +1,3 @@
+error:
+  checkinonce: This user is already checked in for today.
+  weeklyhour: Total work time for this week is greater than "value" hours. "duration" left

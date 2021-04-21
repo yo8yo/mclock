@@ -1,0 +1,3 @@
+error:
+  checkinonce: Utilisateur déjà enregistré pour aujourd'hui
+  weeklyhour: Le nombre d'heure hebdomadaire dépasse les "value" heures. "duration" restants

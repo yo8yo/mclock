@@ -15,7 +15,7 @@ class WeeklyHour extends Constraint
      * Any public properties become valid options for the annotation.
      * Then, use these in your validator class.
      */
-    public $message = 'Total work time for this week is greater than "value" hours. "duration" left';
+    public $message = 'error.weeklyhour';
     public $max;
 
     public function __construct($options = null)
